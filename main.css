@@ -16,14 +16,18 @@ html {
 
 body {
     margin: 0;
+    
+    position: relative;
 
     font-family: Roboto, sans-serif;
     background: #F6E0A4;
 }
 
 .header {
-    height: 2em;
     padding: 2em 1.6em;
+
+    position: absolute;
+    top: 0;
 }
 
 .logo {
@@ -33,14 +37,14 @@ body {
 
 .section {
     width: 100%;
-    padding: 0 2.4em 2.8em 2.4em;
+    padding: 0 2em;
 
-    display: grid;
-    align-items: start;    
+    display: flex;
+    flex-direction: column;
 }
 
 .about {
-    margin-bottom: 4.8em;
+    margin-bottom: 2em;
     
     display: grid;
     gap: 3.2em;
@@ -61,17 +65,16 @@ body {
 }
 
 .magazine-list {
+    display: grid;
+    grid-auto-rows: 100vh;    
+    
     order: 0;
 }
 
 .magazine {
     display: grid;
-    grid-template-rows: repeat(auto-fit, minmax(20em, 1fr));
+    align-content: center;
     justify-items: center;
-}
-
-.cover {
-    align-self: center;
 }
 
 .cover-img {
@@ -136,15 +139,78 @@ p[class^="p-"], span[class^="p-"] {
 }
 
 @media (min-width: 900px) {
+    .header {
+        position: fixed;
+    }
+    
     .section {
+        display: grid;
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .about, .nav {
+    .nav {
         display: block;
     }
 
     .about {
         align-self: end;
+        text-align: left;
+
+        position: sticky;
+        bottom: 2em;
+
+        order: 0;
+    }
+
+    .right-side {
+        display: grid;
+        grid-template-rows: repeat(2, 50vh);
+    }
+    
+    .contact {
+        text-align: right;
+
+        position: sticky;
+        top: 1.6em;
+
+        order: 1;
+    }
+
+    .nav {
+        place-self: end;
+        
+        position: fixed;
+        bottom: 0;
+
+        order: 2;
+
+        ul {
+            margin: 2em 0;
+
+            list-style: none;
+
+            & > li {
+                height: 2.8em;
+            }
+
+            & > li > a {
+                font-size: var(--lg);
+                
+                color: var(--primary-color);
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .magazine {
+        align-content: start;
+    }
+
+    .cover-img {
+        max-width: 44em;
     }
 }
