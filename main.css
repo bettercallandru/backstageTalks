@@ -1,9 +1,19 @@
 :root {
-    --primary-color: #000000;
-    --secondary-color: #FFFFFF;
+    --black: #000000;
+    --lightbrown: #F6E0A4;
+    --red: #e30512;
+    --blue: #1d3fbb;
+    --orange: #ff651a;
+    --yellow: #ffbe00;
+    --waterblue: #00c1b5;
+    --pink: #FF608C;
+    --white: #FFFFFF;
     --lg: 1.8em;
     --md: 1.5em;
     --sm: 1.2em;
+    --background-color: var(--lightbrown);    
+    --primary-color: var(--black);
+    --secondary-color: var(--white);
 }
 
 * {
@@ -20,7 +30,10 @@ body {
     position: relative;
 
     font-family: Roboto, sans-serif;
-    background: #F6E0A4;
+    
+    background: var(--background-color);
+    transition-property: background;
+    transition-duration: 0.2s;
 }
 
 .header {
@@ -138,7 +151,7 @@ p[class^="p-"], span[class^="p-"] {
     }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 900px) {    
     .header {
         position: fixed;
     }
@@ -206,8 +219,21 @@ p[class^="p-"], span[class^="p-"] {
         }
     }
 
+    html {
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;        
+
+        -ms-overflow-style: none;
+        scrollbar-width: none; 
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
     .magazine {
         align-content: start;
+
+        scroll-snap-align: start;
     }
 
     .cover-img {
