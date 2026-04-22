@@ -2,7 +2,7 @@ const magazineList = [
   {
     id: "magazine-8",
     name: "Issue #8",
-    img: "app/img/backstagetalks_cover_issue_8.png",
+    img: "assets/img/backstagetalks_cover_issue_8.png",
     colorPalette: {
       background: "--lightbrown",
       primaryColor: "--black",
@@ -12,7 +12,7 @@ const magazineList = [
   {
     id: "magazine-7",
     name: "Issue #7",
-    img: "app/img/backstagetalks_cover_issue_7.png",
+    img: "assets/img/backstagetalks_cover_issue_7.png",
     colorPalette: {
       background: "--pink",
       primaryColor: "--black",
@@ -22,7 +22,7 @@ const magazineList = [
   {
     id: "magazine-6",
     name: "Issue #6",
-    img: "app/img/backstagetalks_cover_issue_6.png",
+    img: "assets/img/backstagetalks_cover_issue_6.png",
     colorPalette: {
       background: "--white",
       primaryColor: "--black",
@@ -32,7 +32,7 @@ const magazineList = [
   {
     id: "magazine-5",
     name: "Issue #5",
-    img: "app/img/backstagetalks_cover_issue_5.png",
+    img: "assets/img/backstagetalks_cover_issue_5.png",
     colorPalette: {
       background: "--waterblue",
       primaryColor: "--black",
@@ -42,7 +42,7 @@ const magazineList = [
   {
     id: "magazine-4",
     name: "Issue #4",
-    img: "app/img/backstagetalks_cover_issue_4.png",
+    img: "assets/img/backstagetalks_cover_issue_4.png",
     colorPalette: {
       background: "--orange",
       primaryColor: "--black",
@@ -52,7 +52,7 @@ const magazineList = [
   {
     id: "magazine-3",
     name: "Issue #3",
-    img: "app/img/backstagetalks_cover_issue_3.png",
+    img: "assets/img/backstagetalks_cover_issue_3.png",
     colorPalette: {
       background: "--yellow",
       primaryColor: "--black",
@@ -62,7 +62,7 @@ const magazineList = [
   {
     id: "magazine-2",
     name: "Issue #2",
-    img: "app/img/backstagetalks_cover2017.png",
+    img: "assets/img/backstagetalks_cover2017.png",
     colorPalette: {
       background: "--blue",
       primaryColor: "--black",
@@ -72,7 +72,7 @@ const magazineList = [
   {
     id: "magazine-1",
     name: "Issue #1",
-    img: "app/img/backstagetalks_cover2016_n.png",
+    img: "assets/img/backstagetalks_cover2016_n.png",
     colorPalette: {
       background: "--red",
       primaryColor: "--black",
