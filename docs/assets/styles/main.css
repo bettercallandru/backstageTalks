@@ -88,6 +88,10 @@ body {
     display: grid;
     align-content: center;
     justify-items: center;
+
+    p {
+        text-align: center;
+    }
 }
 
 .cover-img {
@@ -147,7 +151,7 @@ p[class^="p-"], span[class^="p-"] {
 
 @media (min-width: 600px) {
     .logo {
-        width: 28em;
+        width: 26em;
     }
 }
 
@@ -212,6 +216,10 @@ p[class^="p-"], span[class^="p-"] {
                 color: var(--primary-color);
                 text-decoration: none;
 
+                &.active {
+                    font-weight: bold;
+                }
+
                 &:hover {
                     text-decoration: underline;
                 }
@@ -233,7 +241,8 @@ p[class^="p-"], span[class^="p-"] {
     .magazine {
         align-content: start;
 
-        scroll-snap-align: start;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
     }
 
     .cover-img {

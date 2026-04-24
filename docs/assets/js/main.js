@@ -81,70 +81,80 @@ const magazineList = [
   },
 ];
 
-/* let isThrottled = false;
+// Cache magazine elements for better performance
+const magazineElements = magazineList.map((magazine) =>
+  document.getElementById(magazine.id),
+);
+const tabElements = magazineList.map((magazine) =>
+  document.getElementById(magazine.id + "-tab"),
+);
+const root = document.querySelector(":root");
 
-window.addEventListener("wheel", (event) => {
-  if (isThrottled) return;
-  isThrottled = true;
-
-  event.preventDefault();
-  let newScrollY = window.scrollY + event.deltaY;
-  window.scroll({ top: newScrollY, behavior: "smooth" });
-  setTimeout(() => {
-    isThrottled = false;
-  }, 300);
-});
- */
-
-window.addEventListener("scrollend", (e) => {
-  const focusMagazine = magazineList.find((magazine, index, array) => {
-    const currentMagazine = document.getElementById(magazine.id);
-    const nextMagazine = document.getElementById(array[index + 1]?.id);
-
-    const magazineOffsetTop =
-      currentMagazine?.offsetTop - currentMagazine?.offsetHeight / 2 < 0
-        ? 0
-        : currentMagazine?.offsetTop - currentMagazine?.offsetHeight / 2;
-
-    const {
-      currentMagazineOffsetTop,
-      currentMagazineOffsetHeight,
-      nextMagazineOffsetTop,
-    } = {
-      currentMagazineOffsetTop: currentMagazine?.offsetTop,
-      currentMagazineOffsetHeight: currentMagazine?.offsetHeight / 2,
-      nextMagazineOffsetTop: nextMagazine?.offsetTop
-        ? nextMagazine?.offsetTop
-        : Infinity,
-    };
-    const scrollY = parseInt(window.scrollY.toFixed(0));
-
-    if (
-      scrollY >= currentMagazineOffsetTop - currentMagazineOffsetHeight < 0
-        ? 0
-        : currentMagazineOffsetTop - currentMagazineOffsetHeight &&
-          scrollY < nextMagazineOffsetTop - currentMagazineOffsetHeight
-    ) {
-      return magazine;
+const clearActiveTabs = () => {
+  tabElements.forEach((tab) => {
+    if (tab) {
+      tab.classList.remove("active");
     }
   });
+};
 
-  if (focusMagazine) {
-    const root = document.querySelector(":root");
+const getFocusMagazine = (scrollY) => {
+  let focusMagazine = null;
 
+  for (let i = 0; i < magazineList.length; i++) {
+    const magazine = magazineList[i];
+    const currentElement = magazineElements[i];
+    const nextElement = magazineElements[i + 1];
+
+    if (!currentElement) continue;
+
+    const currentTop = currentElement.offsetTop;
+    const currentHeight = currentElement.offsetHeight;
+    const threshold = currentHeight / 2;
+    const startRange = Math.max(0, currentTop - threshold);
+    const endRange = nextElement ? nextElement.offsetTop - threshold : Infinity;
+
+    if (scrollY >= startRange && scrollY < endRange) {
+      focusMagazine = magazine;
+      break;
+    }
+  }
+  return focusMagazine;
+};
+
+const setMagazineColors = (magazine) => {
+  if (magazine) {
     root.style.setProperty(
       "--background-color",
-      `var(${focusMagazine.colorPalette.background})`,
+      `var(${magazine.colorPalette.background})`,
     );
     root.style.setProperty(
       "--primary-color",
-      `var(${focusMagazine.colorPalette.primaryColor})`,
+      `var(${magazine.colorPalette.primaryColor})`,
     );
     root.style.setProperty(
       "--secondary-color",
-      `var(${focusMagazine.colorPalette.secondaryColor})`,
+      `var(${magazine.colorPalette.secondaryColor})`,
     );
-  }
 
-  e.preventDefault();
+    document.getElementById(magazine.id + "-tab").classList.add("active");
+  }
+};
+
+window.addEventListener("DOMContentLoaded", () => {
+  const scrollY = Math.round(window.scrollY);
+
+  clearActiveTabs();
+  const focusMagazine = getFocusMagazine(scrollY);
+
+  setMagazineColors(focusMagazine);
+});
+
+window.addEventListener("scrollend", () => {
+  const scrollY = Math.round(window.scrollY);
+
+  clearActiveTabs();
+  const focusMagazine = getFocusMagazine(scrollY);
+
+  setMagazineColors(focusMagazine);
 });
